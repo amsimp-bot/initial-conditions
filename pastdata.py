@@ -22,7 +22,6 @@ bar = IncrementalBar('Progress', max=max_bar)
 height_list = []
 T_list = []
 rh_list = []
-time_list = []
 
 for i in range(max_bar):
   try:
@@ -71,7 +70,6 @@ for i in range(max_bar):
     T_list.append(temperature)
     rh_list.append(rh)
     height_list.append(geopotential_height)
-    time_list.append((date + timedelta(hours=-6)))
     
     # Remove file to prevent clutter.
     os.remove(data_file)
@@ -84,7 +82,6 @@ for i in range(max_bar):
 T = np.asarray(T_list)
 height = np.asarray(height_list)
 rh = np.asarray(rh_list)
-time = np.asarray(time_list)
 
 # Make folder.
 try:
@@ -94,10 +91,7 @@ except OSError:
 
 # Save.
 folder = 'historical_conditions/'
-np.save(folder + 'temperature.npy', T)
-np.save(folder + 'geopotential_height.npy', height)
-np.save(folder + 'relative_humidity.npy', rh)
-np.save(folder + 'time.npy', time)
+np.savez_compressed(folder + 'rnn-data', a=T, b=height, c=rh)
 
 # Done.
 bar.finish()  

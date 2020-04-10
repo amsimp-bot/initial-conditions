@@ -18,6 +18,12 @@ date = date + timedelta(days=-100)
 max_bar = 100 * 4
 bar = IncrementalBar('Progress', max=max_bar)
 
+# Create lists.
+height_list = []
+T_list = []
+rh_list = []
+time_list = []
+
 for i in range(100*4):
   try:
     # Define the date.
@@ -57,46 +63,41 @@ for i in range(100*4):
     data = iris.load(data_file)
 
     # Retrieve temperature, relative humdity, and geopotential height data.
-    temperature = data[58]
-    rh = data[90]
-    geopotential_height = data[77]
+    temperature = data[58].data
+    rh = data[90].data
+    geopotential_height = data[77].data
 
-    # Save files.
-    folder = 'initial_conditions/' + year + "/" + month + '/' + day + '/' + hour + '/'
-
-    try:
-      os.mkdir('initial_conditions/'+year)
-    except OSError:
-      pass
-
-    try:
-      os.mkdir('initial_conditions/'+year+'/'+month)
-    except OSError:
-      pass
-
-    try:
-      os.mkdir('initial_conditions/' + year + "/" + month + '/' + day)
-    except OSError:
-      pass
+    # Append to lists.
+    T_list.append(temperature)
+    rh_list.append(rh)
+    height_list.append(geopotential_height)
+    time_list.append((date + timedelta(hours=-6)))
     
-    try:
-      os.mkdir('initial_conditions/' + year + "/" + month + '/' + day + '/' + hour)
-    except OSError:
-      pass
-
-    # Save initial conditions data in .nc file
-    DataList = CubeList([
-        temperature,
-        rh,
-        geopotential_height,
-    ])
-    iris.save(DataList, folder + 'initial_conditions.nc')
-
     # Remove file to prevent clutter.
     os.remove(data_file)
 
     bar.next()
   except HTTPError:
     pass
+ 
+# Save initial conditions data in .npy file
+T = np.asarray(T_list)
+height = np.asarray(height_list)
+rh = np.asarray(rh_list)
+time = np.asarray(time)
 
+# Make folder.
+try:
+  os.mkdir('historical_conditions/')
+except OSError:
+  pass
+
+# Save.
+folder = 'historical_conditions/'
+np.save(T, folder + 'temperature.npy')
+np.save(height, folder + 'geopotential_height.npy')
+np.save(rh, folder + 'relative_humidity.npy')
+np.save(time, folder + 'time.npy')
+
+# Done.
 bar.finish()  

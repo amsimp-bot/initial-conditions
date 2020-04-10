@@ -15,7 +15,7 @@ date = datetime(int(date[2]), int(date[1]), int(date[0]), int(date[3]))
 date = date + timedelta(days=-100)
 
 # Create a bar to determine progress.
-max_bar = 100 * 4
+max_bar = 60 * 4
 bar = IncrementalBar('Progress', max=max_bar)
 
 # Create lists.
@@ -24,7 +24,7 @@ T_list = []
 rh_list = []
 time_list = []
 
-for i in range(100*4):
+for i in range(max_bar):
   try:
     # Define the date.
     day = date.day

@@ -94,10 +94,10 @@ except OSError:
 
 # Save.
 folder = 'historical_conditions/'
-np.save(T, folder + 'temperature.npy')
-np.save(height, folder + 'geopotential_height.npy')
-np.save(rh, folder + 'relative_humidity.npy')
-np.save(time, folder + 'time.npy')
+np.save(folder + 'temperature.npy', T)
+np.save(folder + 'geopotential_height.npy', height)
+np.save(folder + 'relative_humidity.npy', rh)
+np.save(folder + 'time.npy', time)
 
 # Done.
 bar.finish()  

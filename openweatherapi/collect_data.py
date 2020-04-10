@@ -92,7 +92,14 @@ for lat in latitude_lines:
         lon = float(lon)
         
         # Current weather conditions.
-        obs = owm.weather_at_coords(lat, lon)
+        while True:
+            try:
+                obs = owm.weather_at_coords(lat, lon)
+            except:
+                sleep(1)
+            else:
+                break
+        
         weather = obs.get_weather()
         # Temperature.
         temp = weather.get_temperature()
@@ -124,7 +131,14 @@ for lat in latitude_lines:
         virtual_temperature_lat.append(t_v)
 
         # Get the weather forecast for the next five days.
-        obs_forecast = owm.three_hours_forecast_at_coords(lat, lon)
+        while True:
+            try:
+                obs_forecast = owm.three_hours_forecast_at_coords(lat, lon)
+            except:
+                sleep(1)
+            else:
+                break
+                
         forecast = obs_forecast.get_forecast()
 
         # Time variation lists.

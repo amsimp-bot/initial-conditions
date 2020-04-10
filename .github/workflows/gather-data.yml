@@ -1,4 +1,4 @@
-name: Daily Update of Data
+name: Current Atmospheric Conditions
 
 on:
   schedule:
@@ -41,7 +41,7 @@ jobs:
         git config --global user.name "amsimp-bot"
         git add .
         if [ -n "$(git status --porcelain)" ]; then
-          git commit -m "Daily Update of Data";
+          git commit -m "Current Atmospheric Conditions Added";
         else
           echo "Data has not been updated since last commit";
         fi

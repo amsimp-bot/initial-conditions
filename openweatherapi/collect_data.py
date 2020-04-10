@@ -170,9 +170,9 @@ for lat in latitude_lines:
             forecast_humidity_time.append(h)
             # Wind.
             v_vector = weather.get_wind()
-            speed, direction = v_vector.get("speed"), v_vector.get("deg")
+            speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
             u, v = cal.wind_components(
-                speed=speed * units('m/s'), wdir=direction * units.deg
+                speed=speed, wdir=direction
             )
             u, v = u.magnitude, v.magnitude
             # Zonal Wind.

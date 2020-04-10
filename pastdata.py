@@ -84,7 +84,7 @@ for i in range(max_bar):
 T = np.asarray(T_list)
 height = np.asarray(height_list)
 rh = np.asarray(rh_list)
-time = np.asarray(time)
+time = np.asarray(time_list)
 
 # Make folder.
 try:

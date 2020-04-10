@@ -30,6 +30,7 @@ jobs:
         conda install -c conda-forge iris
         conda install -c conda-forge iris-grib
         pip install wget
+        pip install progress
         python pastdata.py
     - name: Commit data
       run: |

@@ -116,8 +116,8 @@ for lat in latitude_lines:
         v_vector = weather.get_wind()
         speed, direction = v_vector.get("speed"), v_vector.get("deg")
         direction = np.radians(direction)
-        u = -speed * np.sin(wind_direction)
-        v = -speed * np.cos(wind_direction)
+        u = -speed * np.sin(direction)
+        v = -speed * np.cos(direction)
         # Zonal Wind.
         zonal_wind_lat.append(u)
         # Meridional Wind.
@@ -171,8 +171,8 @@ for lat in latitude_lines:
             v_vector = weather.get_wind()
             speed, direction = v_vector.get("speed"), v_vector.get("deg")
             direction = np.radians(direction)
-            u = -speed * np.sin(wind_direction)
-            v = -speed * np.cos(wind_direction)
+            u = -speed * np.sin(direction)
+            v = -speed * np.cos(direction)
             # Zonal Wind.
             forecast_zonalwind_time.append(u)
             # Meridional Wind.

@@ -267,7 +267,7 @@ if hour < 10:
     hour = "0" + str(hour)
 
 # Save files.
-folder = str(year) + "/" + str(month) + '/' + str(day) + '/'
+folder = "openweatherapi/" + str(year) + "/" + str(month) + '/' + str(day) + '/'
 try:
     os.mkdir(str(year))
 except OSError:

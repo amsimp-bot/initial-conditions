@@ -283,23 +283,23 @@ except OSError:
 
 # Temperature.
 # Air Temperature.
-np.save('temperature.npy', temperature)
-np.save('forecast_temperature.npy', forecast_temperature)
+np.save(folder+'temperature.npy', temperature)
+np.save(folder+'forecast_temperature.npy', forecast_temperature)
 # Virtual Temperature.
-np.save('virtual_temperature.npy', virtual_temperature)
-np.save('forecast_virtualtemperature.npy', forecast_virtualtemperature)
+np.save(folder+'virtual_temperature.npy', virtual_temperature)
+np.save(folder+'forecast_virtualtemperature.npy', forecast_virtualtemperature)
 # Pressure.
-np.save('pressure.npy', pressure)
-np.save('forecast_pressure.npy', forecast_pressure)
+np.save(folder+'pressure.npy', pressure)
+np.save(folder+'forecast_pressure.npy', forecast_pressure)
 # Humidity.
-np.save('humidity.npy', humidity)
-np.save('forecast_humidity.npy', forecast_humidity)
+np.save(folder+'humidity.npy', humidity)
+np.save(folder+'forecast_humidity.npy', forecast_humidity)
 # Wind.
 # Zonal Wind.
-np.save('zonal_wind.npy', zonal_wind)
-np.save('forecast_zonalwind.npy', forecast_zonalwind)
+np.save(folder+'zonal_wind.npy', zonal_wind)
+np.save(folder+'forecast_zonalwind.npy', forecast_zonalwind)
 # Meridional Wind.
-np.save('meridional_wind.npy', meridional_wind)
-np.save('forecast_meridionalwind.npy', forecast_meridionalwind)
+np.save(folder+'meridional_wind.npy', meridional_wind)
+np.save(folder+'forecast_meridionalwind.npy', forecast_meridionalwind)
 
 bar.finish()

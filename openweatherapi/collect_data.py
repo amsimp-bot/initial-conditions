@@ -269,15 +269,15 @@ if hour < 10:
 # Save files.
 folder = "openweatherapi/" + str(year) + "/" + str(month) + '/' + str(day) + '/'
 try:
-    os.mkdir(str(year))
+    os.mkdir("openweatherapi/"+str(year))
 except OSError:
     pass
 try:
-    os.mkdir(str(year)+'/'+str(month))
+    os.mkdir("openweatherapi/"+str(year)+'/'+str(month))
 except OSError:
     pass
 try:
-    os.mkdir(str(year) + "/" + str(month) + '/' + str(day))
+    os.mkdir("openweatherapi/"+str(year) + "/" + str(month) + '/' + str(day))
 except OSError:
     pass
 

@@ -267,21 +267,17 @@ if hour < 10:
     hour = "0" + str(hour)
 
 # Save files.
-folder = str(year) + "/" + str(month) + '/' + str(day) + '/' + str(hour) + '/'
+folder = str(year) + "/" + str(month) + '/' + str(day) + '/'
 try:
-    os.mkdir(year)
+    os.mkdir(str(year))
 except OSError:
     pass
 try:
-    os.mkdir(year+'/'+month)
+    os.mkdir(str(year)+'/'+str(month))
 except OSError:
     pass
 try:
-    os.mkdir(year + "/" + month + '/' + day)
-except OSError:
-    pass
-try:
-    os.mkdir(year + "/" + month + '/' + day + '/' + hour)
+    os.mkdir(str(year) + "/" + str(month) + '/' + str(day))
 except OSError:
     pass
 

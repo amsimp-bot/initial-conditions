@@ -127,6 +127,7 @@ for lat in latitude_lines:
             pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
         )
         t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
+        t_v = t_v.magnitude
         virtual_temperature_lat.append(t_v)
 
         # Get the weather forecast for the next five days.
@@ -182,6 +183,7 @@ for lat in latitude_lines:
                 pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
             )
             t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
+            t_v = t_v.magnitude
             forecast_virtualtemperature_time.append(t_v)
 
         # Append to latitudinal list.
@@ -285,23 +287,23 @@ except OSError:
 
 # Temperature.
 # Air Temperature.
-np.save(temperature, 'temperature.npy')
-np.save(forecast_temperature, 'forecast_temperature.npy')
+np.save('temperature.npy', temperature)
+np.save('forecast_temperature.npy', forecast_temperature)
 # Virtual Temperature.
-np.save(virtual_temperature, 'virtual_temperature.npy')
-np.save(forecast_virtualtemperature, 'forecast_virtualtemperature.npy')
+np.save('virtual_temperature.npy', virtual_temperature)
+np.save('forecast_virtualtemperature.npy', forecast_virtualtemperature)
 # Pressure.
-np.save(pressure, 'pressure.npy')
-np.save(forecast_pressure, 'forecast_pressure.npy')
+np.save('pressure.npy', pressure)
+np.save('forecast_pressure.npy', forecast_pressure)
 # Humidity.
-np.save(humidity, 'humidity.npy')
-np.save(forecast_humidity, 'forecast_humidity.npy')
+np.save('humidity.npy', humidity)
+np.save('forecast_humidity.npy', forecast_humidity)
 # Wind.
 # Zonal Wind.
-np.save(zonal_wind, 'zonal_wind.npy')
-np.save(forecast_zonalwind, 'forecast_zonalwind.npy')
+np.save('zonal_wind.npy', zonal_wind)
+np.save('forecast_zonalwind.npy', forecast_zonalwind)
 # Meridional Wind.
-np.save(meridional_wind, 'meridional_wind.npy')
-np.save(forecast_meridionalwind, 'forecast_meridionalwind.npy')
+np.save('meridional_wind.npy', meridional_wind)
+np.save('forecast_meridionalwind.npy', forecast_meridionalwind)
 
 bar.finish()

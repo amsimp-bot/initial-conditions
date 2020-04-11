@@ -114,7 +114,13 @@ for lat in latitude_lines:
         humidity_lat.append(h)
         # Wind.
         v_vector = weather.get_wind()
-        speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
+        while True:
+            try:
+                speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
+            except:
+                sleep(0.1)
+            else:
+                break
         u, v = cal.wind_components(
             speed=speed, wdir=direction
         )
@@ -170,7 +176,13 @@ for lat in latitude_lines:
             forecast_humidity_time.append(h)
             # Wind.
             v_vector = weather.get_wind()
-            speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
+            while True:
+                try:
+                    speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
+                except:
+                    sleep(0.1)
+                else:
+                    break
             u, v = cal.wind_components(
                 speed=speed, wdir=direction
             )

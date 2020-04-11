@@ -114,17 +114,10 @@ for lat in latitude_lines:
         humidity_lat.append(h)
         # Wind.
         v_vector = weather.get_wind()
-        while True:
-            try:
-                speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
-            except:
-                sleep(0.1)
-            else:
-                break
-        u, v = cal.wind_components(
-            speed=speed, wdir=direction
-        )
-        u, v = u.magnitude, v.magnitude
+        speed, direction = v_vector.get("speed"), v_vector.get("deg")
+        direction = np.radians(direction)
+        u = -speed * np.sin(wind_direction)
+        v = -speed * np.cos(wind_direction)
         # Zonal Wind.
         zonal_wind_lat.append(u)
         # Meridional Wind.
@@ -176,17 +169,10 @@ for lat in latitude_lines:
             forecast_humidity_time.append(h)
             # Wind.
             v_vector = weather.get_wind()
-            while True:
-                try:
-                    speed, direction = v_vector.get("speed") * units('m/s'), v_vector.get("deg") * units.deg
-                except:
-                    sleep(0.1)
-                else:
-                    break
-            u, v = cal.wind_components(
-                speed=speed, wdir=direction
-            )
-            u, v = u.magnitude, v.magnitude
+            speed, direction = v_vector.get("speed"), v_vector.get("deg")
+            direction = np.radians(direction)
+            u = -speed * np.sin(wind_direction)
+            v = -speed * np.cos(wind_direction)
             # Zonal Wind.
             forecast_zonalwind_time.append(u)
             # Meridional Wind.

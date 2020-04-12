@@ -95,12 +95,14 @@ for lat in latitude_lines:
         while True:
             try:
                 obs = owm.weather_at_coords(lat, lon)
+                weather = obs.get_weather()
+                direction = weather.get_wind().get("deg")
+                direction = np.radians(direction)
             except:
                 sleep(1)
             else:
                 break
         
-        weather = obs.get_weather()
         # Temperature.
         temp = weather.get_temperature()
         temp = temp.get("temp")
@@ -267,7 +269,7 @@ if hour < 10:
     hour = "0" + str(hour)
 
 # Save files.
-folder = "openweatherapi/" + str(year) + "/" + str(month) + '/' + str(day) + '/'
+folder = "openweatherapi/" + str(year) + "/" + str(month) + '/' + str(day) + '/' + str(hour) + '/'
 try:
     os.mkdir("openweatherapi/"+str(year))
 except OSError:
@@ -278,6 +280,10 @@ except OSError:
     pass
 try:
     os.mkdir("openweatherapi/"+str(year) + "/" + str(month) + '/' + str(day))
+except OSError:
+    pass
+try:
+    os.mkdir("openweatherapi/"+str(year) + "/" + str(month) + '/' + str(day) + '/' str(hour))
 except OSError:
     pass
 

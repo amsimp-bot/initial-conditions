@@ -96,8 +96,6 @@ for lat in latitude_lines:
             try:
                 obs = owm.weather_at_coords(lat, lon)
                 weather = obs.get_weather()
-                direction = weather.get_wind().get("deg")
-                direction = np.radians(direction)
             except:
                 sleep(1)
             else:
@@ -117,19 +115,25 @@ for lat in latitude_lines:
         # Wind.
         v_vector = weather.get_wind()
         speed, direction = v_vector.get("speed"), v_vector.get("deg")
-        direction = np.radians(direction)
-        u = -speed * np.sin(direction)
-        v = -speed * np.cos(direction)
+        try:
+            direction = np.radians(direction)
+            u = -speed * np.sin(direction)
+            v = -speed * np.cos(direction)
+        except:
+            u, v = None, None
         # Zonal Wind.
         zonal_wind_lat.append(u)
         # Meridional Wind.
         meridional_wind_lat.append(v)
         # Virtual Temperature.
-        r = cal.mixing_ratio_from_relative_humidity(
-            pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
-        )
-        t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
-        t_v = t_v.magnitude
+        if temp != None
+            r = cal.mixing_ratio_from_relative_humidity(
+                pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
+            )
+            t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
+            t_v = t_v.magnitude
+        else:
+            t_v = None
         virtual_temperature_lat.append(t_v)
 
         # Get the weather forecast for the next five days.
@@ -173,19 +177,25 @@ for lat in latitude_lines:
             # Wind.
             v_vector = weather.get_wind()
             speed, direction = v_vector.get("speed"), v_vector.get("deg")
-            direction = np.radians(direction)
-            u = -speed * np.sin(direction)
-            v = -speed * np.cos(direction)
+            try:
+                direction = np.radians(direction)
+                u = -speed * np.sin(direction)
+                v = -speed * np.cos(direction)
+            except:
+                u, v = None, None
             # Zonal Wind.
             forecast_zonalwind_time.append(u)
             # Meridional Wind.
             forecast_meridionalwind_time.append(v)
             # Virtual Temperature.
-            r = cal.mixing_ratio_from_relative_humidity(
-                pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
-            )
-            t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
-            t_v = t_v.magnitude
+            if temp != None
+                r = cal.mixing_ratio_from_relative_humidity(
+                    pressure=p * units.millibars, temperature=temp * units.K, relative_humidity=(h / 100)
+                )
+                t_v = cal.virtual_temperature(temperature=temp * units.K, mixing=r)
+                t_v = t_v.magnitude
+            else:
+                t_v = None
             forecast_virtualtemperature_time.append(t_v)
 
         # Append to latitudinal list.

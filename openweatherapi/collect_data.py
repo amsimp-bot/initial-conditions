@@ -15,11 +15,11 @@ owm = pyowm.OWM(api_key)
 # Define the lines of latitude and longitude.
 # Latitude lines.
 sh = [
-    i for i in np.arange(-89, 0, 15) if i != 0
+    i for i in np.arange(-89, 0, 20) if i != 0
 ]
 start_nh = sh[-1] * -1
 nh = [
-    i for i in np.arange(start_nh, 90, 15) if i != 0 and i != 90
+    i for i in np.arange(start_nh, 90, 20) if i != 0 and i != 90
 ]
 for deg in nh:
     sh.append(deg)
@@ -28,7 +28,7 @@ latitude_lines = np.asarray(sh)
 
 # Longitude lines.
 longitude_lines = [
-    i for i in np.arange(0, 359, 15)
+    i for i in np.arange(0, 359, 20)
 ]
 # Convert list to NumPy array and add the unit of measurement.
 longitude_lines = np.asarray(longitude_lines)

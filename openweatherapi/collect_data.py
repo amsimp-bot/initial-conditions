@@ -283,7 +283,7 @@ try:
 except OSError:
     pass
 try:
-    os.mkdir("openweatherapi/"+str(year) + "/" + str(month) + '/' + str(day) + '/' str(hour))
+    os.mkdir("openweatherapi/"+str(year) + "/" + str(month) + '/' + str(day) + '/' + str(hour))
 except OSError:
     pass
 
